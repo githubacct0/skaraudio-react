@@ -1,3 +1,4 @@
+import { useState} from 'react';
 import {Product, flattenConnection, useProduct} from '@shopify/hydrogen/client';
 
 import ProductOptions from './ProductOptions.client';
@@ -41,14 +42,19 @@ function ProductPriceMarkup() {
 function AddToCartMarkup() {
   const {selectedVariant} = useProduct();
   const isOutOfStock = !selectedVariant.availableForSale;
+  const [quantity, setQuantity] = useState(1);
+  const updateQuantity = (qty) => {
+    setQuantity(qty);
+  }
 
   return (
     <div className="space-y-2 mb-8 flex">
-      {!isOutOfStock ? <ProductQuantitySelector /> : <></>}
+      {!isOutOfStock ? <ProductQuantitySelector onQuantityChange= {updateQuantity} /> : <></>}
       <Product.SelectedVariant.AddToCartButton
         className={BUTTON_PRIMARY_CLASSES}
         disabled={isOutOfStock}
         style={{margin: 0}}
+        quantity={quantity}
       >
         {isOutOfStock ? 'Out of stock' : 'Add to Cart'}
       </Product.SelectedVariant.AddToCartButton>

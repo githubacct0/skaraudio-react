@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-export function ProductQuantitySelector() {
+export function ProductQuantitySelector(props) {
 
     const allowedNumbers = Array(1000).fill().map((v,i)=>i+1);
     const [quantity, setQuantity] = useState(1);
@@ -9,6 +9,7 @@ export function ProductQuantitySelector() {
         if (allowedNumbers.includes(qty)) {
             setQuantity(qty);
         }
+        props.onQuantityChange(qty);
     }
 
     const handleChange = (event) => {

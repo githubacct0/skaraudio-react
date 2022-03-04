@@ -34,3 +34,14 @@
 .menu-bg-color {
 	background-color: rgba(27, 31, 35, 0.9)
 }
+
+#tabs-tab .nav-link{
+	border-bottom: 0;
+	padding: 10px 20px;
+    border-radius: 20px;
+}
+#tabs-tab .nav-link.active{
+	background: black;
+	color: white;
+
+}
